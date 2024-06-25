@@ -3,9 +3,17 @@ import React, { useState } from "react";
 import { CheckboxGroup, Checkbox } from "@nextui-org/checkbox";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStore, faChartLine, faDollarSign, faBuilding, faChartBar, faMapMarkedAlt, faHome, faUsers, faWalking, faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faExchangeAlt, faWallet, faStore, faChartLine, faDollarSign, faBuilding, faChartBar, faMapMarkedAlt, faHome, faUsers, faWalking, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import { Button as NextUIButton } from "@nextui-org/react";
 import './customScrollbar.css';
+
+const quickAccessItems = [
+  { name: "Dashboard", icon: faTachometerAlt, id: "dashboard" },
+  { name: "Exchange", icon: faExchangeAlt, id: "exchange" },
+  { name: "My Wallet", icon: faWallet, id: "my_wallet" },
+  { name: "Tradeview", icon: faChartLine, id: "tradeview" },
+];
+
 
 const menuItems = [
   {
@@ -104,8 +112,20 @@ export const Menu = () => {
   };
 
   return (
-    <aside className="mt-16 w-96 bg-zinc-900 p-4 fixed h-screen overflow-y-auto custom-scrollbar">
-      <h2 className="text-white py-4 text-center">Service</h2>
+    <aside className="w-80 dark:bg-zinc-900 p-4 h-screen overflow-y-auto custom-scrollbar">
+      <h1 className="font-bold text-3xl text-black dark:text-gray-200 py-4 text-center">우리들의 강물</h1>
+      <div>
+        <h2 className="font-bold text-2xl m-2 text-white dark:text-gray-200 py-4">Quick Access</h2>
+        <div className="flex flex-col   gap-2">
+          {quickAccessItems.map((item) => (
+            <div key={item.id} className="m-2 flex items-center text-white dark:text-gray-200 px-2 py-1 hover:bg-gray-700 dark:hover:bg-gray-800 rounded-lg cursor-pointer">
+              <FontAwesomeIcon icon={item.icon} className="mr-3 p-3" />
+              {item.name}
+            </div>
+          ))}
+        </div>
+      </div>
+      <h2 className="font-bold text-2xl m-2 text-white dark:text-gray-200 py-4">Service</h2>
       <Accordion
         showDivider={false}
         className="p-2 flex flex-col gap-1 w-full"
@@ -118,16 +138,16 @@ export const Menu = () => {
             aria-label={item.name}
             title={
               <div className="flex items-center">
-                <FontAwesomeIcon icon={item.icon} className="mr-2" />
+                <FontAwesomeIcon icon={item.icon} className="mr-6 dark:text-gray-50 " />
                 {item.name}
               </div>
             }
           >
             <div className="flex flex-wrap">
               {item.options.map((option) => (
-                <NextUIButton 
+                <NextUIButton
                   key={option}
-                  className={`m-2 ${selectedValues[item.id]?.includes(option) ? "bg-blue-500 text-white" : "bg-neutral-700 text-gray-50"}`}
+                  className={`m-2 ${selectedValues[item.id]?.includes(option) ? "dark:bg-blue-500 text-white" : "dark:bg-neutral-700 dark:text-gray-50"}`}
                   onClick={() => handleButtonClick(item.id, option)}
                 >
                   {option}
