@@ -5,7 +5,7 @@ import { ChatHistory } from "./chat-history";
 
 export const Prompt = () => {
 	return (
-		<Card className="w-full h-full shadow-lg flex flex-col px-10 pt-5 dark:bg-zinc-800 shadow-xl">
+		<Card className="w-full h-full shadow-lg flex flex-col px-5 pt-5 dark:bg-zinc-800 shadow-xl">
 			<div className="p-5 border-b border-gray-300">
 				<h2 className="m-0">GPT인듯 GPT아닌 GPT같은 프롬포트</h2>
 			</div>

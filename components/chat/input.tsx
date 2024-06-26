@@ -32,7 +32,7 @@ export function CustomInput() {
                 fullWidth
                 color="default"
                 size="lg"
-                className="m-5"
+                className="m-2"
                 radius="full"
                 classNames={{
                     label: "text-black/50 dark:text-white/90",
