@@ -1,6 +1,4 @@
-"use client";
-
-import { Prompt } from "@/components/Prompt/Prompt";
+import { Prompt } from "@/components/chat/background";
 
 export default function Home() {
 	return (
