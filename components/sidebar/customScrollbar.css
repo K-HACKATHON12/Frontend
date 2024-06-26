@@ -1,14 +1,14 @@
 /* Custom Scrollbar CSS */
 .custom-scrollbar::-webkit-scrollbar {
-width: 12px;
+    width: 12px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-background: #18181B;
+    background: #18181B;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-background-color: #555;
-border-radius: 20px;
-border: 3px solid #18181B;
+    background-color: #555;
+    border-radius: 20px;
+    border: 3px solid #18181B;
 }
