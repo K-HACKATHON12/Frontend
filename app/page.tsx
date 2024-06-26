@@ -1,16 +1,18 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
+"use client";
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import { Prompt } from "@/components/Prompt/Prompt";
 
 export default function Home() {
 	return (
-		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-			K-HACKATHON12
-		</section>
+		<div className="flex flex-row h-screen">
+			<div className="grow flex-none w-4/6 bg-gray-500 flex items-center justify-center">
+				01
+			</div>
+			<div className="grow flex flex-none w-2/6 justify-center items-center dark:bg-stone-800 p-5">
+				<div className="w-full h-full pb-20">
+					<Prompt />
+				</div>
+			</div>
+		</div>
 	);
 }
