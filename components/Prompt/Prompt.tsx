@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Card, Input, Button } from "@nextui-org/react";
+import "./customScrollbar.css";
 
 export const Prompt = () => {
 	const [inputValue, setInputValue] = useState("");
@@ -32,17 +33,17 @@ export const Prompt = () => {
 	}, [chatHistory]);
 
 	return (
-		<Card className="w-full h-full shadow-lg flex flex-col pb-20 pl-10 pr-10 pt-5 rounded-none dark:bg-neutral-800">
+		<Card className="w-full h-full shadow-lg flex flex-col px-10 pt-5 dark:bg-zinc-800 shadow-xl">
 			<div className="p-5 border-b border-gray-300">
 				<h2 className="m-0">GPT인듯 GPT아닌 GPT같은 프롬포트</h2>
 			</div>
 			<div
 				ref={chatContainerRef}
-				className="flex-1 overflow-y-auto p-5"
+				className="flex-1 overflow-y-auto p-5 custom-scrollbar"
 			>
 				{chatHistory.map((chat, index) => (
 					<div key={index} className={`flex ${chat.type === 'user' ? 'justify-end' : 'justify-start'} mb-2`}>
-						<div className={`${chat.type === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'} p-3 rounded-lg max-w-xs break-words`}>
+						<div className={`${chat.type === 'user' ? ' dark:bg-stone-600 text-white' : 'bg-gray-300 text-black'} p-3 rounded-lg max-w-xs break-words`}>
 							{chat.text}
 						</div>
 					</div>
@@ -55,9 +56,35 @@ export const Prompt = () => {
 					onKeyDown={handleKeyDown}
 					placeholder="Enter your message"
 					fullWidth
-					className="mr-3"
+					color="default"
+					size="lg"
+					className="m-5"
+					radius="full"
+					classNames={{
+						label: "text-black/50 dark:text-white/90",
+						input: [
+							"bg-transparent",
+							"text-black/90 dark:text-white/90",
+							"placeholder:text-default-700/50 dark:placeholder:text-white/60",
+						],
+						innerWrapper: "bg-transparent",
+						inputWrapper: [
+							"bg-default-200/50",
+							"dark:bg-default/60",
+							"backdrop-blur-xl",
+							"backdrop-saturate-200",
+							"hover:bg-default-200/70",
+							"dark:hover:bg-default/70",
+							"group-data-[focus=true]:bg-default-200/50",
+							"dark:group-data-[focus=true]:bg-default/60",
+							"!cursor-text",
+						],
+					}}
 				/>
-				<Button onClick={handleButtonClick}>
+				<Button
+					onClick={handleButtonClick}
+					radius="full"
+				>
 					Send
 				</Button>
 			</div>
