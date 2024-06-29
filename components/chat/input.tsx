@@ -1,18 +1,20 @@
 "use client";
 
+import useChatStore from '../../app/stores/chatStore';
 import { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
 
 export function CustomInput() {
     const [inputValue, setInputValue] = useState("");
-    const [chatHistory, setChatHistory] = useState<{ type: string, text: string }[]>([]);
+    const addMessage = useChatStore((state) => state.addMessage);
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
     };
 
     const handleButtonClick = () => {
         if (inputValue.trim()) {
-            setChatHistory([...chatHistory, { type: 'user', text: inputValue }]);
+            addMessage({ type: 'user', text: inputValue });
             setInputValue("");
         }
     };
@@ -22,6 +24,7 @@ export function CustomInput() {
             handleButtonClick();
         }
     };
+
     return (
         <div className="flex items-center p-3 border-t border-gray-300">
             <Input
@@ -62,5 +65,5 @@ export function CustomInput() {
                 Send
             </Button>
         </div>
-    )
+    );
 }
