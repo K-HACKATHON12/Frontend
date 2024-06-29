@@ -1,14 +1,12 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-
-import { Providers } from "./providers";
-
+import { Providers } from "@/app/providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-import { Menu } from "@/components/Menu/Menu";
+import { Sidebar } from "@/components/sidebar/sidebar";
+import MarkdownTest from "./marktest";
 
 export const metadata: Metadata = {
 	title: {
@@ -43,9 +41,13 @@ export default function RootLayout({
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="flex h-screen overflow-hidden">
-						<Menu />
-						<div className="flex flex-col flex-grow">
+					<div className="
+					flex
+					h-screen
+					overflow-hidden
+					">
+						<Sidebar />
+						<div className="flex flex-col flex-grow h-screen">
 							<Navbar />
 							<main >
 								{children}

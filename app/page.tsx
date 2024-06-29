@@ -1,18 +1,10 @@
-"use client";
-
-import { Prompt } from "@/components/Prompt/Prompt";
-
+import { Prompt } from "@/components/chat/background";
+import { Chart } from "@/components/chart/chart";
 export default function Home() {
 	return (
-		<div className="flex flex-row h-screen">
-			<div className="grow flex-none w-4/6 bg-gray-500 flex items-center justify-center">
-				01
-			</div>
-			<div className="grow flex flex-none w-2/6 justify-center items-center dark:bg-stone-800 p-5">
-				<div className="w-full h-full pb-20">
-					<Prompt />
-				</div>
-			</div>
+		<div className="flex flex-col mr-4 h-screen">
+			<Chart />
+			<Prompt />
 		</div>
 	);
 }
