@@ -23,7 +23,7 @@ export function CustomInput() {
         }
     };
     return (
-        <>
+        <div className="flex items-center p-3 border-t border-gray-300">
             <Input
                 value={inputValue}
                 onChange={handleInputChange}
@@ -61,6 +61,6 @@ export function CustomInput() {
             >
                 Send
             </Button>
-        </>
+        </div>
     )
 }
