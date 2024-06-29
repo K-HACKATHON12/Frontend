@@ -1,5 +1,5 @@
+import React from 'react';
 import { CustomInput } from "./input";
-import "./customScrollbar.css";
 import { ChatHistory } from "./chat-history";
 
 export const Prompt = () => {

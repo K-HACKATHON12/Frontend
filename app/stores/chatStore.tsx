@@ -1,4 +1,3 @@
-// app/store/chatStore.tsx
 import { create } from 'zustand';
 
 interface Message {
