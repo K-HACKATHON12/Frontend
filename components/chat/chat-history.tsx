@@ -19,7 +19,7 @@ export function ChatHistory() {
         >
             {chatHistory.map((chat, index) => (
                 <div key={index} className={`flex ${chat.type === 'user' ? 'justify-end' : 'justify-start'} mb-2`}>
-                    <div className={`${chat.type === 'user' ? ' dark:bg-stone-600 text-white' : 'bg-gray-300 text-black'} p-5 rounded-lg max-w-xs break-words`}>
+                    <div className={`${chat.type === 'user' ? 'text-white' : 'bg-gray-300 text-black'} p-5 rounded-lg max-w-xs break-words`}>
                         {chat.text}
                     </div>
                 </div>
