@@ -1,4 +1,4 @@
-/* Custom Scrollbar CSS */
+/* Custom Scrollbar CSS
 .custom-scrollbar::-webkit-scrollbar {
 width: 12px;
 }
@@ -11,4 +11,4 @@ background: #18181B;
 background-color: #555;
 border-radius: 20px;
 border: 3px solid #18181B;
-}
+} */

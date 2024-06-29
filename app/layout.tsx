@@ -3,7 +3,7 @@ import { Metadata, Viewport } from "next";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 
-import { Providers } from "./providers";
+import { Providers } from "@/app/providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
@@ -46,7 +46,7 @@ export default function RootLayout({
 					<div className="flex h-screen overflow-hidden">
 						<Sidebar />
 						<div className="flex flex-col flex-grow">
-							{/* <Navbar /> */}
+							<Navbar />
 							<main >
 								{children}
 							</main>
