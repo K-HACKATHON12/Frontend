@@ -14,7 +14,7 @@ export default function IntroducePage() {
                 <IntroduceCard />
             </div>
 
-            <h1 className="text-6xl mb-10">Used Open Source</h1>
+            <h1 className="text-6xl mb-10">사용한 오픈소스</h1>
             <div className="flex space-x-5 mb-10">
                 <Button radius="full" className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg">
                     Nextjs

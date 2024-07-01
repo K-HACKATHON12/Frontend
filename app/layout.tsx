@@ -6,6 +6,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar/sidebar";
+import { Jua } from "next/font/google";
 
 export const metadata: Metadata = {
 	title: {
@@ -25,6 +26,8 @@ export const viewport: Viewport = {
 	],
 };
 
+const jua = Jua({ subsets: ["latin"], weight: ["400"] });
+
 export default function RootLayout({
 	children,
 }: {
@@ -40,7 +43,7 @@ export default function RootLayout({
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="flex h-screen overflow-hidden">
+					<div className={`flex h-screen overflow-hidden ${jua.className}`}>
 						<Sidebar />
 						<div className="flex flex-col flex-grow h-screen">
 							<Navbar />
