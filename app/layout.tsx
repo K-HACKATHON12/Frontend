@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar/sidebar";
-import MarkdownTest from "./marktest";
+
 
 export const metadata: Metadata = {
 	title: {
