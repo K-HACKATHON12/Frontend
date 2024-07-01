@@ -68,7 +68,7 @@ export function CustomInput() {
                 fullWidth
                 color="default"
                 size="lg"
-                minRows={1}
+                minRows={2}
                 className="m-2"
                 radius="full"
             />

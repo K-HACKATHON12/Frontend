@@ -50,7 +50,7 @@ export function MenuAccordion() {
                     aria-label={item.name}
                     title={
                         <div className="flex items-center">
-                            <FontAwesomeIcon icon={item.icon} className="mr-6 dark:text-gray-50" />
+                            <FontAwesomeIcon icon={item.icon} className="mr-6 dark:text-gray-50 w-5 h-5" />
                             {item.name}
                         </div>
                     }
