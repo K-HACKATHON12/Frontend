@@ -8,7 +8,7 @@ export const Sidebar = () => {
 		<aside className="w-96 p-4 h-screen overflow-y-auto custom-scrollbar m-3">
 			<QuickAccess />
 			<div className="text-xs mt-3">
-				Service
+				서비스
 			</div>
 			<MenuAccordion />
 		</aside>

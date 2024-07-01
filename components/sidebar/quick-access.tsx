@@ -8,7 +8,7 @@ export function QuickAccess() {
     return (
         <div className="flex flex-col border-b-1 border-gray-200">
             <div className="text-xs">
-                Quick Access
+                빠른 이동
             </div>
             <Listbox
                 aria-label="Actions"

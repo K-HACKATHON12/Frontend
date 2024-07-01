@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/react";
 export default function IntroducePage() {
     return (
         <div className="h-full flex flex-col justify-center items-center">
-            <h1 className="text-8xl mb-5">Seoul Insighter.</h1>
+            <h1 className="text-8xl mb-5">서울 인사이터.</h1>
             <p className="mb-10 text-gray-400">소상공인들을 위한 완벽한 AI 에이전트.</p>
 
             <div className="flex space-x-5 mb-32">
