@@ -43,9 +43,9 @@ export function CustomInput() {
     };
 
     return (
-        <div className="flex items-center p-3 border-t border-gray-300">
+        <div className="flex flex-row items-center p-3 border-t border-gray-300">
             <Chip
-                className="mx-2 h-14"
+                className="mx-2 h-12"
                 size="lg"
                 radius="lg"
                 variant="flat"
@@ -68,8 +68,8 @@ export function CustomInput() {
                 fullWidth
                 color="default"
                 size="lg"
-                minRows={1}
-                className="m-2"
+                minRows={2}
+                className="m-2 flex-grow"
                 radius="full"
             />
             <Button
