@@ -21,7 +21,7 @@ export function CustomInput() {
 
             if (isGPTEnabled) {
                 try {
-                    const response = await fetch(`http://127.0.0.1:8000/api/v1/example/query/?query=${encodeURIComponent(inputValue)}`);
+                    const response = await fetch(`http://127.0.0.1:8000/chat/?query=${encodeURIComponent(inputValue)}`);
                     const data = await response.json();
                     addMessage({ type: 'gpt', text: data.response });
                 } catch (error) {
