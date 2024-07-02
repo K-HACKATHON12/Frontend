@@ -2,13 +2,14 @@
 import { useEffect, useRef } from 'react';
 import { Chart, ChartOptions } from 'chart.js/auto';
 
-export function FluxChart() {
+export function DeJureChart() {
     const chartRef = useRef<Chart | null>(null);
 
     const data = Array.from({ length: 20 }, () => Math.floor(Math.random() * 50000));
     const labels = ["2020-1분기", "2020-2분기", "2020-3분기", "2020-4분기", "2021-1분기", "2021-2분기", "2021-3분기", "2021-4분기", "2022-1분기", "2022-2분기", "2022-3분기", "2022-4분기", "2023-1분기", "2023-2분기", "2023-3분기", "2023-4분기", "2024-1분기", "2024-2분기", "2024-3분기", "2024-4분기"];
+
     useEffect(() => {
-        const canvas = document.getElementById('fluxChart') as HTMLCanvasElement | null;
+        const canvas = document.getElementById('deJureChart') as HTMLCanvasElement | null;
 
         if (canvas) {
             const ctx = canvas.getContext('2d');
@@ -47,7 +48,7 @@ export function FluxChart() {
                         x: {
                             title: {
                                 display: true,
-                                text: '유동 인구',
+                                text: '상주 인구',
                             },
                             ticks: {
                                 display: false,
@@ -76,7 +77,7 @@ export function FluxChart() {
 
     return (
         <div className="w-96 p-4 h-full">
-            <canvas id="fluxChart"></canvas>
+            <canvas id="deJureChart"></canvas>
         </div>
     );
 }
