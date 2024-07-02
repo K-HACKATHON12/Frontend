@@ -1,6 +1,6 @@
 "use client";
 
-import useChatStore from '../../app/stores/chatStore';
+import useChatStore from '@/stores/chatStore';
 import { useState } from "react";
 import { Chip, Textarea, Button, Switch } from "@nextui-org/react";
 
@@ -21,7 +21,7 @@ export function CustomInput() {
 
             if (isGPTEnabled) {
                 try {
-                    const response = await fetch(`http://127.0.0.1:8000/api/v1/example/query/?query=${encodeURIComponent(inputValue)}`);
+                    const response = await fetch(`http://127.0.0.1:8000/chat/?query=${encodeURIComponent(inputValue)}`);
                     const data = await response.json();
                     addMessage({ type: 'gpt', text: data.response });
                 } catch (error) {
@@ -43,9 +43,9 @@ export function CustomInput() {
     };
 
     return (
-        <div className="flex items-center p-3 border-t border-gray-300">
+        <div className="flex flex-row items-center p-3 border-t border-gray-300">
             <Chip
-                className="mx-2 h-14"
+                className="mx-2 h-12"
                 size="lg"
                 radius="lg"
                 variant="flat"

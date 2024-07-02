@@ -3,6 +3,8 @@
 import { BsGithub, BsBuildings, BsChatLeftDots } from "react-icons/bs";
 import { Listbox, ListboxItem } from "@nextui-org/react";
 import { CiUser } from "react-icons/ci";
+import { FaThermometerEmpty } from "react-icons/fa";
+import { BsGraphUp } from "react-icons/bs";
 
 export function QuickAccess() {
     return (
@@ -17,8 +19,26 @@ export function QuickAccess() {
                 <ListboxItem
                     key="introduce"
                     startContent={<BsBuildings />}
-                    href="/introduce">
+                    href="/">
                     소개
+                </ListboxItem>
+                <ListboxItem
+                    key="ai-chat"
+                    startContent={<BsChatLeftDots />}
+                    href="/chat">
+                    AI 채팅
+                </ListboxItem>
+                <ListboxItem
+                    key="ai-chat"
+                    startContent={<BsGraphUp />}
+                    href="/chat">
+                    손인 분석
+                </ListboxItem>
+                <ListboxItem
+                    key="ai-chat"
+                    startContent={<FaThermometerEmpty />}
+                    href="/chat">
+                    창업 온도
                 </ListboxItem>
                 <ListboxItem
                     key="feature"
@@ -26,12 +46,6 @@ export function QuickAccess() {
                     href="https://github.com/orgs/K-HACKATHON12/repositories"
                     target="_black">
                     Github
-                </ListboxItem>
-                <ListboxItem
-                    key="ai-chat"
-                    startContent={<BsChatLeftDots />}
-                    href="/">
-                    AI 채팅
                 </ListboxItem>
                 <ListboxItem
                     key="auth"

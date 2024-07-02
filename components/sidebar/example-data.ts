@@ -1,86 +1,244 @@
+
 import {
-    faTachometerAlt,
-    faExchangeAlt,
-    faWallet,
-    faStore,
-    faChartLine,
-    faDollarSign,
-    faBuilding,
-    faChartBar,
-    faMapMarkedAlt,
-    faHome, faUsers,
-    faWalking,
-    faBriefcase
-} from '@fortawesome/free-solid-svg-icons';
-import './customScrollbar.css';
+  faTachometerAlt,
+  faExchangeAlt,
+  faWallet,
+  faStore,
+  faChartLine,
+  faDollarSign,
+  faBuilding,
+  faChartBar,
+  faMapMarkedAlt,
+  faHome,
+  faUsers,
+  faWalking,
+  faBriefcase,
+  faCalendarAlt,
+  faClock,
+  faRulerCombined,
+} from "@fortawesome/free-solid-svg-icons";
+import "./customScrollbar.css";
 
 export const quickAccessItems = [
-    { name: "Dashboard", icon: faTachometerAlt, id: "dashboard" },
-    { name: "Exchange", icon: faExchangeAlt, id: "exchange" },
-    { name: "My Wallet", icon: faWallet, id: "my_wallet" },
-    { name: "Tradeview", icon: faChartLine, id: "tradeview" },
+  { name: "Dashboard", icon: faTachometerAlt, id: "dashboard" },
+  { name: "Exchange", icon: faExchangeAlt, id: "exchange" },
+  { name: "My Wallet", icon: faWallet, id: "my_wallet" },
+  { name: "Tradeview", icon: faChartLine, id: "tradeview" },
 ];
 
+const years = Array.from({ length: 5 }, (_, i) => ({ name: `${new Date().getFullYear() - i} 년도` }));
+const quarters = ['1 분기', '2 분기', '3 분기', '4 분기'].map(name => ({ name }));
 
 export const menuItems = [
-    {
-        name: "점포 정보",
-        id: "store_info",
+  {
+    name: "상권 정보",
+    id: "commercial_area_info",
+    icon: faStore,
+    subcategories: [
+      {
+        name: "상권 구분",
         icon: faStore,
-        options: ["점포 수", "개업 점포 수", "폐업 점포 수", "프렌차이즈 점포 수", "유사 업종 점포 수", "개업율", "폐업율"],
-    },
-    {
-        name: "변화 지표",
-        id: "change_indicators",
-        icon: faChartLine,
-        options: ["영업 개월 평균 (서울)", "영업 개월 평균", "상권 변화 지표명", "폐업 영업 개월 평균(서울)", "폐업 영업 개월 평균"],
-    },
-    {
-        name: "비용",
-        id: "cost",
-        icon: faDollarSign,
-        options: ["여가 지출", "유흥 지출", "의료비 지출", "교육 지출", "문화 지출", "지출 총금액", "식료품 지출", "의류 신발 지출", "생활 용품 지출", "교통 지출", "소득 구간", "월 평균 소득"],
-    },
-    {
-        name: "시설",
-        id: "facility",
-        icon: faBuilding,
-        options: ["유치원", "버스 정거장", "철도 역", "백화점", "슈퍼마켓", "고등학교", "대학교", "종합병원", "초등학교", "관공서", "은행", "극장", "공항", "버스 터미널", "집객시설", "숙박시설", "중학교", "약국", "일반 병원", "지하철 역"],
-    },
-    {
-        name: "매출",
-        id: "sales",
-        icon: faChartBar,
-        options: ["10대 금액", "10대 건수", "20대 금액", "20대 건수", "30대 금액", "30대 건수", "40대 금액", "40대 건수", "50대 금액", "50대 건수", "60대이상 금액", "60대이상 건수", "0~6시 금액", "0~6시 건수", "6~11시 금액", "6~11시 건수", "11~14시 금액", "11~14시 건수", "14~17시 금액", "14~17시 건수", "17~21시 금액", "17~21시 건수", "21~24시 금액", "21~24시 건수", "월요일 금액", "월요일 건수", "화요일 금액", "화요일 건수", "수요일 금액", "수요일 건수", "목요일 금액", "목요일 건수", "금요일 금액", "금요일 건수", "토요일 금액", "토요일 건수", "일요일 금액", "일요일 건수", "남성 금액", "남성 건수", "여성 금액", "여성 건수", "주중 금액", "주중 건수", "주말 금액", "주말 건수", "당월 금액", "당월 건수"],
-    },
-    {
+        options: ["골목상권", "전통시장"].map(name => ({ name }))
+      },
+      {
         name: "지역",
-        id: "region",
         icon: faMapMarkedAlt,
-        options: ["자치구", "행정동", "영역 면적"],
-    },
-    {
-        name: "아파트",
-        id: "apartment",
-        icon: faHome,
-        options: ["아파트 단지 수", "아파트 평균 면적", "아파트 평균 시가", "아파트 1억미만 세대 수", "아파트 1억 세대 수", "아파트 2억 세대 수", "아파트 3억 세대 수", "아파트 4억 세대 수", "아파트 5억 세대 수", "아파트 6억이상 세대 수", "아파트 66제곱미터 미만 세대 수", "아파트 66제곱미터 세대 수", "아파트 99제곱미터 세대 수", "아파트 132제곱미터 세대 수", "아파트 165제곱미터 세대 수"],
-    },
-    {
-        name: "인구",
-        id: "population",
+        options: ["자치구", "행정동"].map(name => ({ name }))
+      },
+      {
+        name: "상권",
+        icon: faMapMarkedAlt,
+        options: ["상권 A", "상권 B"].map(name => ({ name })) // 상권 목록을 추가
+      }
+    ]
+  },
+  {
+    name: "기간",
+    id: "period",
+    icon: faCalendarAlt,
+    options: [...years, ...quarters]
+  },
+  {
+    name: "점포 정보",
+    id: "store_info",
+    icon: faStore,
+    options: [
+      { name: "총 점포 수", icon: faStore },
+      { name: "개업 점포 수", icon: faStore },
+      { name: "폐업 점포 수", icon: faStore },
+      { name: "프렌차이즈 점포 수", icon: faStore },
+      { name: "유사 업종 점포 수", icon: faStore }
+    ],
+  },
+  {
+    name: "개업율 및 폐업율",
+    id: "opening_closing_rate",
+    icon: faChartLine,
+    options: [
+      { name: "개업율", icon: faChartLine },
+      { name: "폐업율", icon: faChartLine }
+    ],
+  },
+  {
+    name: "운영 및 폐업 개월 평균",
+    id: "operation_closing_months",
+    icon: faCalendarAlt,
+    options: [
+      { name: "서울 운영 개월 평균", icon: faCalendarAlt },
+      { name: "일반 운영 개월 평균", icon: faCalendarAlt },
+      { name: "폐업 개월 평균", icon: faCalendarAlt }
+    ],
+  },
+  {
+    name: "상권 변화 지표",
+    id: "change_indicators",
+    icon: faChartLine,
+    options: [
+      { name: "다이나믹", icon: faChartLine },
+      { name: "상권 확장", icon: faChartLine },
+      { name: "정체", icon: faChartLine }
+    ],
+  },
+  {
+    name: "근처 집객 시설",
+    id: "nearby_facilities",
+    icon: faBuilding,
+    options: [
+      { name: "시설 A", icon: faBuilding },
+      { name: "시설 B", icon: faBuilding }
+    ],
+  },
+  {
+    name: "추정 매출액 및 건수",
+    id: "estimated_sales",
+    icon: faDollarSign,
+    subcategories: [
+      {
+        name: "연령대",
         icon: faUsers,
-        options: ["총 인구 수", "10대 남성 인구 수", "20대 남성 인구 수", "30대 남성 인구 수", "40대 남성 인구 수", "50대 남성 인구 수", "60대 이상 남성 인구 수", "10대 여성 인구 수", "20대 여성 인구 수", "30대 여성 인구 수", "40대 여성 인구 수", "50대 여성 인구 수", "60대 이상 여성 인구 수", "10대 인구 수", "20대 인구 수", "30대 인구 수", "40대 인구 수", "50대 인구 수", "60대 여성 인구 수", "남성 인구 수", "여성 인구 수", "아파트 가구 수", "비 아파트 가구 수", "총 가구 수"],
-    },
-    {
-        name: "유동 인구",
-        id: "floating_population",
-        icon: faWalking,
-        options: ["남성 유동 인구 수", "여성 유동 인구 수", "일요일 유동 인구 수", "월요일 유동 인구 수", "화요일 유동 인구 수", "수요일 유동 인구 수", "목요일 유동 인구 수", "금요일 유동 인구 수", "토요일 유동 인구 수", "10대 유동인구 수", "20대 유동인구 수", "30대 유동인구 수", "40대 유동인구 수", "50대 유동인구 수", "60대이상 유동인구 수", "0~6시 유동인구 수", "6~11시 유동인구 수", "11~14시 유동인구 수", "14~17시 유동인구 수", "17~21시 유동인구 수", "21~24시 유동인구 수"],
-    },
-    {
-        name: "직장",
-        id: "work_population",
-        icon: faBriefcase,
-        options: ["총 직장인구 수", "남성 10대 직장인구 수", "남성 20대 직장인구 수", "남성 30대 직장인구 수", "남성 40대 직장인구 수", "남성 50대 직장인구 수", "남성 60대이상 직장인구 수", "여성 10대 직장인구 수", "여성 20대 직장인구 수", "여성 30대 직장인구 수", "여성 40대 직장인구 수", "여성 50대 직장인구 수", "여성 60대이상 직장인구 수", "10대 직장인구 수", "20대 직장인구 수", "30대 직장인구 수", "40대 직장인구 수", "50대 직장인구 수", "60대이상 직장인구 수", "남성 직장인구 수", "여성 직장인구 수"],
-    },
+        options: ["10대", "20대", "30대", "40대", "50대", "60대 이상"].map(name => ({ name }))
+      },
+      {
+        name: "시간대",
+        icon: faClock,
+        options: ["00~06시", "06~11시", "11~14시", "14~17시", "17~21시", "21~24시"].map(name => ({ name }))
+      },
+      {
+        name: "요일",
+        icon: faCalendarAlt,
+        options: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"].map(name => ({ name }))
+      },
+      {
+        name: "기간",
+        icon: faCalendarAlt,
+        options: ["주중", "주말", "당월"].map(name => ({ name }))
+      }
+    ]
+  },
+  {
+    name: "아파트 정보",
+    id: "apartment_info",
+    icon: faHome,
+    subcategories: [
+      {
+        name: "단지 정보",
+        icon: faHome,
+        options: ["아파트 단지 수", "아파트 평균 면적", "아파트 평균 시가"].map(name => ({ name }))
+      },
+      {
+        name: "가격 범위",
+        icon: faDollarSign,
+        options: ["1억 미만", "1억", "2억", "3억", "4억", "5억", "6억 이상"].map(name => ({ name }))
+      },
+      {
+        name: "면적 범위",
+        icon: faRulerCombined,
+        options: ["66제곱미터 미만", "66제곱미터", "99제곱미터", "132제곱미터", "165제곱미터"].map(name => ({ name }))
+      }
+    ]
+  },
+  {
+    name: "상주 인구",
+    id: "resident_population",
+    icon: faUsers,
+    subcategories: [
+      {
+        name: "총 상주 인구",
+        icon: faUsers,
+        options: ["총 상주 인구"].map(name => ({ name }))
+      },
+      {
+        name: "연령대별",
+        icon: faUsers,
+        options: ["10대", "20대", "30대", "40대", "50대", "60대 이상"].map(name => ({ name }))
+      },
+      {
+        name: "성별 연령대별",
+        icon: faUsers,
+        options: ["남성 10대", "남성 20대", "남성 30대", "남성 40대", "남성 50대", "남성 60대 이상",
+          "여성 10대", "여성 20대", "여성 30대", "여성 40대", "여성 50대", "여성 60대 이상"].map(name => ({ name }))
+      },
+      {
+        name: "가구 수",
+        icon: faUsers,
+        options: ["아파트 가구 수", "비 아파트 가구 수", "총 가구 수"].map(name => ({ name }))
+      }
+    ]
+  },
+  {
+    name: "유동 인구",
+    id: "floating_population",
+    icon: faWalking,
+    subcategories: [
+      {
+        name: "성별",
+        icon: faUsers,
+        options: ["남성", "여성"].map(name => ({ name }))
+      },
+      {
+        name: "요일별",
+        icon: faCalendarAlt,
+        options: ["일요일", "월요일", "화요일",
+          "수요일", "목요일", "금요일", "토요일"].map(name => ({ name }))
+      },
+      {
+        name: "연령대별",
+        icon: faUsers,
+        options: ["10대", "20대", "30대", "40대", "50대", "60대 이상"].map(name => ({ name }))
+      },
+      {
+        name: "시간대별",
+        icon: faClock,
+        options: ["00~06시", "06~11시", "11~14시", "14~17시", "17~21시", "21~24시"].map(name => ({ name }))
+      },
+      {
+        name: "총 유동 인구",
+        icon: faUsers,
+        options: ["총 유동 인구"].map(name => ({ name }))
+      }
+    ]
+  },
+  {
+    name: "직장 인구",
+    id: "working_population",
+    icon: faBriefcase,
+    subcategories: [
+      {
+        name: "성별 연령대별",
+        icon: faUsers,
+        options: ["남성 10대", "남성 20대", "남성 30대", "남성 40대", "남성 50대", "남성 60대 이상",
+          "여성 10대", "여성 20대", "여성 30대", "여성 40대", "여성 50대", "여성 60대 이상"].map(name => ({ name }))
+      },
+      {
+        name: "연령대별",
+        icon: faUsers,
+        options: ["10대", "20대", "30대", "40대", "50대", "60대 이상"].map(name => ({ name }))
+      },
+      {
+        name: "성별",
+        icon: faUsers,
+        options: ["남성", "여성"].map(name => ({ name }))
+      }
+    ]
+  }
 ];
