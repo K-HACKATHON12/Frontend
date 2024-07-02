@@ -88,6 +88,7 @@ export function MenuAccordion() {
                                         key={option.name}
                                         className={`m-2 ${exclusiveSelection[item.id] === option.name ? "bg-blue-500 text-white" : "dark:bg-neutral-700 dark:text-gray-50"}`}
                                         onClick={() => handleExclusiveButtonClick(item.id, option.name)}
+                                        size="sm"
                                     >
                                         {isIconOption(option) && <FontAwesomeIcon icon={option.icon} className="mr-2" />}
                                         {option.name}
