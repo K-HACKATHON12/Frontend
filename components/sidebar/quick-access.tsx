@@ -17,7 +17,7 @@ export function QuickAccess() {
                 <ListboxItem
                     key="introduce"
                     startContent={<BsBuildings />}
-                    href="/introduce">
+                    href="/">
                     소개
                 </ListboxItem>
                 <ListboxItem
@@ -30,7 +30,7 @@ export function QuickAccess() {
                 <ListboxItem
                     key="ai-chat"
                     startContent={<BsChatLeftDots />}
-                    href="/">
+                    href="/chat">
                     AI 채팅
                 </ListboxItem>
                 <ListboxItem
