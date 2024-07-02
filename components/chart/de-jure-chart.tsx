@@ -49,6 +49,11 @@ export function DeJureChart() {
                             title: {
                                 display: true,
                                 text: '상주 인구',
+                                font: {
+                                    family: 'Roboto', // 상속 폰트
+                                    size: 18,
+                                    weight: 'bold',
+                                },
                             },
                             ticks: {
                                 display: false,
@@ -56,6 +61,9 @@ export function DeJureChart() {
                             grid: {
                                 display: false, // x축의 눈금 표시 안함
                             },
+                            border: {
+                                display: false, // x축 경계선 표시 안함
+                            }
                         },
                         y: {
                             display: false,

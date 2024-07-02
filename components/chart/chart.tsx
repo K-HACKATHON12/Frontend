@@ -6,7 +6,7 @@ import { SalesRevenueChart } from './sales-revenue-chart';
 
 export function Chart() {
     return (
-        <div className="w-full h-40 flex justify-center items-center border-1 border-gray-300 rounded-xl mb-10 mt-2">
+        <div className="w-full  h-96 flex justify-center items-center border-1 border-gray-300 rounded-xl mb-10 mt-2">
             <FluxChart />
             <DeJureChart />
             <WorkChart />

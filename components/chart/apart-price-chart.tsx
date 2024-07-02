@@ -26,7 +26,7 @@ export function ApartPriceChart() {
                         {
                             data: data,
                             fill: false,
-                            borderColor: 'rgba(00, 00, 00, 1)',
+                            borderColor: 'rgba(0, 0, 0, 1)',
                             borderWidth: 3,
                             pointRadius: 0, // 점을 없앰
                             tension: 0.5, // 라운딩을 없앰
@@ -40,9 +40,11 @@ export function ApartPriceChart() {
                     plugins: {
                         legend: {
                             display: false,
-                        },
-                        title: {
-                            display: false,
+                            labels: {
+                                font: {
+                                    family: 'Roboto', // 폰트 패밀리 설정
+                                }
+                            },
                         },
                     },
                     scales: {
@@ -50,6 +52,11 @@ export function ApartPriceChart() {
                             title: {
                                 display: true,
                                 text: '아파트 가격',
+                                font: {
+                                    family: 'Roboto', // 상속 폰트
+                                    size: 18,
+                                    weight: 'bold',
+                                },
                             },
                             ticks: {
                                 display: false,
@@ -57,6 +64,9 @@ export function ApartPriceChart() {
                             grid: {
                                 display: false, // x축의 눈금 표시 안함
                             },
+                            border: {
+                                display: false, // x축 경계선 표시 안함
+                            }
                         },
                         y: {
                             display: false,
