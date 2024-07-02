@@ -5,12 +5,12 @@ import { QuickAccess } from './quick-access';
 import { Details } from './details';
 
 export const Sidebar = () => {
-  return (
-    <aside className="w-96 p-4 h-screen overflow-y-auto custom-scrollbar m-3">
-      <QuickAccess />
-      <div className="text-xs mt-3">Service</div>
-      <MenuAccordion />
-      <Details />
-    </aside>
-  );
+	return (
+		<aside className="w-96 p-4 h-screen overflow-y-auto custom-scrollbar m-3">
+			<QuickAccess />
+			<div className="text-xs mt-3">서비스</div>
+			<MenuAccordion />
+			<Details />
+		</aside>
+	);
 };

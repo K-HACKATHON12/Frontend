@@ -1,5 +1,5 @@
 "use client";
-import useChatStore from '../../app/stores/chatStore';
+import useChatStore from '@/stores/chatStore';
 import { useEffect, useRef } from "react";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';

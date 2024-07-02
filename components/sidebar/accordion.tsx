@@ -8,11 +8,9 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 export function MenuAccordion() {
     const itemClasses = {
-        base: "py-0 w-full",
         title: "font-normal text-medium",
-        trigger: "px-2 py-0 data-[hover=true]:bg-default-100 rounded-lg h-14 flex items-center",
+        // trigger: "px-2 py-0 data-[hover=true]:bg-default-100 rounded-lg h-14 flex items-center",
         indicator: "text-medium transform rotate-180",
-        content: "text-small px-2",
     };
 
     const [selectedValues, setSelectedValues] = useState<{ [key: string]: string[] }>({
@@ -60,20 +58,16 @@ export function MenuAccordion() {
     return (
         <Accordion
             showDivider={false}
-            className="p-2 flex flex-col gap-1 w-full"
             itemClasses={itemClasses}
-            selectionMode="multiple"
+            // selectionMode="multiple"
+            isCompact
         >
             {menuItems.map((item) => (
                 <AccordionItem
                     key={item.id}
                     aria-label={item.name}
-                    title={
-                        <div className="flex items-center">
-                            <FontAwesomeIcon icon={item.icon} className="w-5 h-5 mr-6 dark:text-gray-50" />
-                            {item.name}
-                        </div>
-                    }
+                    startContent={<FontAwesomeIcon icon={item.icon} className="w-4 h-4" />}
+                    title={item.name}
                 >
                     <div className="flex flex-wrap">
                         {item.options && item.options.map((option) => (
@@ -94,6 +88,7 @@ export function MenuAccordion() {
                                         key={option.name}
                                         className={`m-2 ${exclusiveSelection[item.id] === option.name ? "bg-blue-500 text-white" : "dark:bg-neutral-700 dark:text-gray-50"}`}
                                         onClick={() => handleExclusiveButtonClick(item.id, option.name)}
+                                        size="sm"
                                     >
                                         {isIconOption(option) && <FontAwesomeIcon icon={option.icon} className="mr-2" />}
                                         {option.name}

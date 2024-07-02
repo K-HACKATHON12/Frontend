@@ -1,6 +1,6 @@
 "use client";
 
-import useChatStore from '../../app/stores/chatStore';
+import useChatStore from '@/stores/chatStore';
 import { useState } from "react";
 import { Chip, Textarea, Button, Switch } from "@nextui-org/react";
 
@@ -69,7 +69,7 @@ export function CustomInput() {
                 color="default"
                 size="lg"
                 minRows={2}
-                className="m-2 flex-grow"
+                className="m-2"
                 radius="full"
             />
             <Button
