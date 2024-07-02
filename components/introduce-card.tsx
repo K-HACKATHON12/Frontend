@@ -1,7 +1,13 @@
 import React from "react";
 import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@nextui-org/react";
 
-export default function IntroduceCard() {
+export default function IntroduceCard({
+    title, subtitle, description, link, linkTitle
+}
+    :
+    {
+        title: string, subtitle: string, description: string, link: string, linkTitle: string
+    }) {
     return (
         <Card className="max-w-[400px]">
             <CardHeader className="flex gap-3">
@@ -13,15 +19,24 @@ export default function IntroduceCard() {
                     width={40}
                 />
                 <div className="flex flex-col">
-                    <p className="text-md">NextUI</p>
-                    <p className="text-small text-default-500">nextui.org</p>
+                    <p className="text-md">{title}</p>
+                    <p className="text-small text-default-500">{subtitle}</p>
                 </div>
             </CardHeader>
             <Divider />
             <CardBody>
-                <p>Make beautiful websites regardless of your design experience.</p>
+                <p>{description}</p>
             </CardBody>
             <Divider />
+            <CardFooter>
+                <Link
+                    isExternal
+                    showAnchorIcon
+                    href={link}
+                >
+                    {linkTitle}
+                </Link>
+            </CardFooter>
         </Card>
     );
 }
