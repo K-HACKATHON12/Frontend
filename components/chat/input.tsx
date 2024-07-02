@@ -1,6 +1,6 @@
 "use client";
 
-import useChatStore from '../../app/stores/chatStore';
+import useChatStore from '@/stores/chatStore';
 import { useState } from "react";
 import { Chip, Textarea, Button, Switch } from "@nextui-org/react";
 
