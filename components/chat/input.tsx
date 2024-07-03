@@ -9,6 +9,7 @@ export function CustomInput() {
     const addMessage = useChatStore((state) => state.addMessage);
     const isGPTEnabled = useChatStore((state) => state.isGPTEnabled);
     const setGPTEnabled = useChatStore((state) => state.setGPTEnabled);
+    const getFullChatHistory = useChatStore((state) => state.getFullChatHistory);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInputValue(e.target.value);
@@ -16,20 +17,29 @@ export function CustomInput() {
 
     const handleButtonClick = async () => {
         if (inputValue.trim()) {
-            addMessage({ type: 'user', text: inputValue });
+            addMessage({ role: 'user', content: inputValue });
             setInputValue("");
 
             if (isGPTEnabled) {
                 try {
-                    const response = await fetch(`http://127.0.0.1:8000/chat/?query=${encodeURIComponent(inputValue)}`);
+                    const fullChatHistory = getFullChatHistory();
+                    const requestBody = fullChatHistory;
+                    const response = await fetch('http://127.0.0.1:8000/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(requestBody),
+                    });
                     const data = await response.json();
-                    addMessage({ type: 'gpt', text: data.response });
+                    addMessage({ role: 'assistant', content: data.response });
                 } catch (error) {
                     console.error("Failed to fetch from FastAPI server:", error);
                 }
             }
         }
     };
+
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -82,3 +92,5 @@ export function CustomInput() {
         </div>
     );
 }
+
+
