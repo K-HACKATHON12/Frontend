@@ -2,16 +2,20 @@
 import { useEffect, useRef } from 'react';
 import { Chart, ChartOptions } from 'chart.js/auto';
 
-export function SalesRevenueChart() {
+interface SalesRevenueChartProps {
+    initialData: { STDR_YYQU_CD: number; total_amount: number }[];
+
+}
+export default function SalesRevenueChart({ initialData }: SalesRevenueChartProps) {
     const chartRef = useRef<Chart | null>(null);
 
-    // 랜덤 매출액 데이터 생성
-    const data = Array.from({ length: 20 }, () => Math.floor(Math.random() * 50000));
-    const labels = ["2020-1분기", "2020-2분기", "2020-3분기", "2020-4분기", "2021-1분기", "2021-2분기", "2021-3분기", "2021-4분기", "2022-1분기", "2022-2분기", "2022-3분기", "2022-4분기", "2023-1분기", "2023-2분기", "2023-3분기", "2023-4분기", "2024-1분기", "2024-2분기", "2024-3분기", "2024-4분기"];
-
+    const labels = initialData.map(data => `${Math.floor(data.STDR_YYQU_CD / 10)}년 ${data.STDR_YYQU_CD % 10}분기`);
+    const data = initialData.map(data => {
+        const noiseFactor = 0.99 + Math.random() * 0.02;
+        return data.total_amount * noiseFactor;
+    });
     useEffect(() => {
         const canvas = document.getElementById('salesRevenueChart') as HTMLCanvasElement | null;
-
         if (canvas) {
             const ctx = canvas.getContext('2d');
 
@@ -49,7 +53,7 @@ export function SalesRevenueChart() {
                         x: {
                             title: {
                                 display: true,
-                                text: '매출액',
+                                text: '지출액',
                                 font: {
                                     family: 'Roboto', // 상속 폰트
                                     size: 18,
@@ -82,7 +86,7 @@ export function SalesRevenueChart() {
                 });
             }
         }
-    }, [data]);
+    }, [initialData]);
 
     return (
         <div className="w-96 p-4 h-full">

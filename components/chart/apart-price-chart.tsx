@@ -2,10 +2,9 @@
 import { useEffect, useRef } from 'react';
 import { Chart, ChartOptions } from 'chart.js/auto';
 
-export function ApartPriceChart() {
+export  function ApartPriceChart() {
     const chartRef = useRef<Chart | null>(null);
 
-    // 랜덤 아파트 가격 데이터 생성
     const data = Array.from({ length: 20 }, () => Math.floor(Math.random() * 50000));
     const labels = ["2020-1분기", "2020-2분기", "2020-3분기", "2020-4분기", "2021-1분기", "2021-2분기", "2021-3분기", "2021-4분기", "2022-1분기", "2022-2분기", "2022-3분기", "2022-4분기", "2023-1분기", "2023-2분기", "2023-3분기", "2023-4분기", "2024-1분기", "2024-2분기", "2024-3분기", "2024-4분기"];
 
