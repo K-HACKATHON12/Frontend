@@ -10,7 +10,7 @@ async function fetchData(url: string) {
 }
 
 export default async function Home() {
-	const expenditureData = await fetchData('http://localhost:8000/query/expenditure/total');
+	const expenditureData = await fetchData('http://158.180.75.20:8000/query/expenditure/total');
 
 	return (
 		<div className="flex flex-col mr-4 h-screen w-full">
