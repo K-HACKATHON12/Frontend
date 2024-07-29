@@ -1,6 +1,6 @@
 import { Prompt } from "@/components/chat/background";
 import { Chart } from "@/components/chart/chart";
-import { MapModal } from "@/components/modal";
+import { MapModal } from "@/components/modal/modal";
 
 async function fetchData(url: string) {
 	const response = await fetch(url, { cache: 'force-cache' });

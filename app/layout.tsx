@@ -7,6 +7,7 @@ import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar/sidebar";
 import { Jua } from "next/font/google";
+import { MapProvider } from "@/map-provider";
 
 export const metadata: Metadata = {
 	title: {
@@ -47,9 +48,11 @@ export default function RootLayout({
 						<Sidebar />
 						<div className="flex flex-col flex-grow h-screen">
 							<Navbar />
-							<main className="h-full max-h-full mb-10 mr-10">
-								{children}
-							</main>
+							<MapProvider>
+								<main className="h-full max-h-full mb-10 mr-10">
+									{children}
+								</main>
+							</MapProvider>
 						</div>
 					</div>
 				</Providers>
