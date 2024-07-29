@@ -1,7 +1,7 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { useEffect, useState } from "react"
 import {
     ChartConfig,
     ChartContainer,
@@ -11,56 +11,8 @@ import {
     ChartTooltipContent,
 } from "@/components/ui/chart"
 
-const chartData = [
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-]
+
+import { useMarkerStore } from "@/stores/chart"
 
 const chartConfig = {
     desktop: {
@@ -73,23 +25,68 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
+const maleColor = "#4869F1";
+const femaleColor = "#F05450";
+
 export function Chart() {
+    console.log('Chart component rendered');
+    const chartData = useMarkerStore((state) => state.chartData);
+    const [transformedData, setTransformedData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        console.log('chartData:', chartData);
+        setIsLoading(true);
+        if (chartData && chartData.length > 0) {
+            const data = chartData.map(item => ({
+                month: item.STDR_YYQU_CD,
+                AGE_10_male: item.AGE_10.male,
+                AGE_10_female: item.AGE_10.female,
+                AGE_20_male: item.AGE_20.male,
+                AGE_20_female: item.AGE_20.female,
+                AGE_30_male: item.AGE_30.male,
+                AGE_30_female: item.AGE_30.female,
+                AGE_40_male: item.AGE_40.male,
+                AGE_40_female: item.AGE_40.female,
+                AGE_50_male: item.AGE_50.male,
+                AGE_50_female: item.AGE_50.female,
+                AGE_60_ABOVE_male: item.AGE_60_ABOVE.male,
+                AGE_60_ABOVE_female: item.AGE_60_ABOVE.female,
+            }));
+            console.log('transformedData:', data);
+            setTransformedData(data);
+            setIsLoading(false);
+        }
+    }, [chartData]);
+
+    if (isLoading) {
+        return <p>Loading chart data...</p>;
+    }
+
     return (
         <ChartContainer config={chartConfig} className="h-64 w-full">
-            <BarChart accessibilityLayer data={chartData}>
-                <CartesianGrid vertical={false} />
-                <XAxis
-                    dataKey="month"
-                    tickLine={false}
-                    tickMargin={10}
-                    axisLine={false}
-                    tickFormatter={(value) => value.slice(0, 3)}
-                />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <ChartLegend content={<ChartLegendContent />} />
-                <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-                <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-            </BarChart>
+            {transformedData.length > 0 ? (
+                <BarChart accessibilityLayer data={transformedData}>
+                    {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                    <XAxis dataKey="month" />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="AGE_10_male" fill={maleColor} />
+                    <Bar dataKey="AGE_10_female" fill={femaleColor} />
+                    <Bar dataKey="AGE_20_male" fill={maleColor} />
+                    <Bar dataKey="AGE_20_female" fill={femaleColor} />
+                    <Bar dataKey="AGE_30_male" fill={maleColor} />
+                    <Bar dataKey="AGE_30_female" fill={femaleColor} />
+                    <Bar dataKey="AGE_40_male" fill={maleColor} />
+                    <Bar dataKey="AGE_40_female" fill={femaleColor} />
+                    <Bar dataKey="AGE_50_male" fill={maleColor} />
+                    <Bar dataKey="AGE_50_female" fill={femaleColor} />
+                    <Bar dataKey="AGE_60_ABOVE_male" fill={maleColor} />
+                    <Bar dataKey="AGE_60_ABOVE_female" fill={femaleColor} />
+                </BarChart>
+            ) : (
+                <p>No data available</p>
+            )}
         </ChartContainer>
-    )
+    );
 }
