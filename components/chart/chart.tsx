@@ -11,12 +11,12 @@ interface ChartProps {
 
 export function Chart({ expenditureData }: ChartProps) {
     return (
-        <div className="w-full h-96 flex justify-center items-center border-1 border-gray-300 rounded-xl mb-10 mt-2">
-            <FluxChart />
+        <div className="w-full h-64 flex justify-center items-center border-1 border-gray-300 rounded-xl mb-10 mt-2">
+            {/* <FluxChart />
             <DeJureChart />
             <WorkChart />
             <ApartPriceChart />
-            <SalesRevenueChart initialData={expenditureData} />
+            <SalesRevenueChart initialData={expenditureData} /> */}
         </div>
     );
 }
