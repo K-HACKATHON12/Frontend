@@ -3,7 +3,8 @@ we need to make this component client rendered as well*/
 'use client'
 
 //Map component Component from library
-import { GoogleMap } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
+import { useState, useEffect } from 'react';
 
 //Map's styling
 const defaultMapContainerStyle = {
@@ -30,6 +31,14 @@ const defaultMapOptions = {
 };
 
 const MapComponent = () => {
+    const [markers, setMarkers] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8000/query/loc')
+            .then(response => response.json())
+            .then(data => setMarkers(data))
+            .catch(error => console.error('Error fetching marker data:', error));
+    }, []);
     return (
         <div className="w-full">
             <GoogleMap
@@ -38,6 +47,13 @@ const MapComponent = () => {
                 zoom={defaultMapZoom}
                 options={defaultMapOptions}
             >
+                {markers.map((marker, index) => (
+                    <Marker
+                        key={index}
+                        position={{ lat: marker.latitude, lng: marker.longitude }}
+                        onClick={() => alert(`Marker clicked: ${marker.TRDAR_CD_NM}`)}
+                    />
+                ))}
             </GoogleMap>
         </div>
     )

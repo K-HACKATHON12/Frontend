@@ -18,7 +18,7 @@ export function MapModal() {
 
     return (
         <>
-            <Button isIconOnly onPress={onOpen} className="w-64 h-auto ml-5 mb-10 mt-2 bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg text-9xl">
+            <Button isIconOnly onPress={onOpen} className="w-64 h-auto ml-5 mb-10 mt-2 bg-black text-white shadow-lg text-9xl">
                 <FaMapMarkedAlt />
             </Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="5xl">
