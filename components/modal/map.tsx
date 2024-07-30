@@ -37,14 +37,14 @@ const MapComponent = () => {
     const setChartData = useMarkerStore((state) => state.setChartData);
 
     useEffect(() => {
-        fetch('http://localhost:8000/query/loc')
+        fetch('http://158.180.75.20:8000/query/loc')
             .then(response => response.json())
             .then(data => setMarkers(data))
             .catch(error => console.error('Error fetching marker data:', error));
     }, []);
 
     const handleMarkerClick = (trdar_cd) => {
-        const url = `http://localhost:8000/query/pop/age/${trdar_cd}`;
+        const url = `http://158.180.75.20:8000/query/pop/age/${trdar_cd}`;
         fetch(url)
             .then(response => response.json())
             .then(data => {
