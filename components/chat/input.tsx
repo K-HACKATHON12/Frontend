@@ -24,7 +24,7 @@ export function CustomInput() {
                 try {
                     const fullChatHistory = getFullChatHistory();
                     const requestBody = fullChatHistory;
-                    const response = await fetch('localhost:8000/chat', {
+                    const response = await fetch('http://158.180.75.20:8000/:8000/chat', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
