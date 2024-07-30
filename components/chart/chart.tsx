@@ -1,14 +1,10 @@
 "use client"
 
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, Tooltip, Legend } from 'recharts';
 import { useEffect, useState } from "react"
 import {
     ChartConfig,
     ChartContainer,
-    ChartLegend,
-    ChartLegendContent,
-    ChartTooltip,
-    ChartTooltipContent,
 } from "@/components/ui/chart"
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 
