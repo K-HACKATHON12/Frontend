@@ -10,7 +10,7 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/ui/chart"
-
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 
 import { useMarkerStore } from "@/stores/chart"
 
@@ -25,19 +25,21 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-const maleColor = "#4869F1";
-const femaleColor = "#F05450";
+const maleColor = "#87CEFA";
+const femaleColor = "#F28B82";
 
 export function Chart() {
     console.log('Chart component rendered');
     const chartData = useMarkerStore((state) => state.chartData);
     const [transformedData, setTransformedData] = useState([]);
+    const [bread, setBread] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         console.log('chartData:', chartData);
         setIsLoading(true);
         if (chartData && chartData.length > 0) {
+            const bread = [chartData[0].TRDAR_SE_CD_NM, chartData[0].TRDAR_CD_NM];
             const data = chartData.map(item => ({
                 month: item.STDR_YYQU_CD,
                 AGE_10_male: item.AGE_10.male,
@@ -54,6 +56,7 @@ export function Chart() {
                 AGE_60_ABOVE_female: item.AGE_60_ABOVE.female,
             }));
             console.log('transformedData:', data);
+            setBread(bread);
             setTransformedData(data);
             setIsLoading(false);
         }
@@ -64,29 +67,35 @@ export function Chart() {
     }
 
     return (
-        <ChartContainer config={chartConfig} className="h-64 w-full">
-            {transformedData.length > 0 ? (
-                <BarChart accessibilityLayer data={transformedData}>
-                    {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                    <XAxis dataKey="month" />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="AGE_10_male" fill={maleColor} />
-                    <Bar dataKey="AGE_10_female" fill={femaleColor} />
-                    <Bar dataKey="AGE_20_male" fill={maleColor} />
-                    <Bar dataKey="AGE_20_female" fill={femaleColor} />
-                    <Bar dataKey="AGE_30_male" fill={maleColor} />
-                    <Bar dataKey="AGE_30_female" fill={femaleColor} />
-                    <Bar dataKey="AGE_40_male" fill={maleColor} />
-                    <Bar dataKey="AGE_40_female" fill={femaleColor} />
-                    <Bar dataKey="AGE_50_male" fill={maleColor} />
-                    <Bar dataKey="AGE_50_female" fill={femaleColor} />
-                    <Bar dataKey="AGE_60_ABOVE_male" fill={maleColor} />
-                    <Bar dataKey="AGE_60_ABOVE_female" fill={femaleColor} />
-                </BarChart>
-            ) : (
-                <p className="h-64 w-full">No data available</p>
-            )}
-        </ChartContainer>
+        <div className="h-64 w-full pb-10 border-1 border-gray-300 mb-10 mt-2 rounded-xl">
+            <Breadcrumbs className="pl-5 pt-2">
+                <BreadcrumbItem>{bread[0]}</BreadcrumbItem>
+                <BreadcrumbItem>{bread[1]}</BreadcrumbItem>
+            </Breadcrumbs>
+            <ChartContainer config={chartConfig} className="h-full w-full">
+                {transformedData.length > 0 ? (
+                    <BarChart accessibilityLayer data={transformedData}>
+                        {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                        <XAxis dataKey="month" />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="AGE_10_male" fill={maleColor} />
+                        <Bar dataKey="AGE_10_female" fill={femaleColor} />
+                        <Bar dataKey="AGE_20_male" fill={maleColor} />
+                        <Bar dataKey="AGE_20_female" fill={femaleColor} />
+                        <Bar dataKey="AGE_30_male" fill={maleColor} />
+                        <Bar dataKey="AGE_30_female" fill={femaleColor} />
+                        <Bar dataKey="AGE_40_male" fill={maleColor} />
+                        <Bar dataKey="AGE_40_female" fill={femaleColor} />
+                        <Bar dataKey="AGE_50_male" fill={maleColor} />
+                        <Bar dataKey="AGE_50_female" fill={femaleColor} />
+                        <Bar dataKey="AGE_60_ABOVE_male" fill={maleColor} />
+                        <Bar dataKey="AGE_60_ABOVE_female" fill={femaleColor} />
+                    </BarChart>
+                ) : (
+                    <p className="h-64 w-full">No data available</p>
+                )}
+            </ChartContainer>
+        </div>
     );
 }
