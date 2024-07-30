@@ -1,5 +1,5 @@
-# Node.js 16 이미지를 베이스로 사용 (필요에 따라 다른 버전을 선택할 수 있습니다)
-FROM node:16
+# Node.js 16 이미지를 베이스로 사용
+FROM node:18
 
 # 작업 디렉토리를 설정
 WORKDIR /app
