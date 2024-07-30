@@ -5,6 +5,7 @@ we need to make this component client rendered as well*/
 //Map component Component from library
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import { useState, useEffect } from 'react';
+import { useMarkerStore } from "@/stores/chart";
 
 //Map's styling
 const defaultMapContainerStyle = {
@@ -32,6 +33,8 @@ const defaultMapOptions = {
 
 const MapComponent = () => {
     const [markers, setMarkers] = useState([]);
+    const setMarkerData = useMarkerStore((state) => state.setMarkerData);
+    const setChartData = useMarkerStore((state) => state.setChartData);
 
     useEffect(() => {
         fetch('http://localhost:8000/query/loc')
@@ -39,6 +42,21 @@ const MapComponent = () => {
             .then(data => setMarkers(data))
             .catch(error => console.error('Error fetching marker data:', error));
     }, []);
+
+    const handleMarkerClick = (trdar_cd) => {
+        const url = `http://localhost:8000/query/pop/age/${trdar_cd}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                setMarkerData(data);
+                setChartData(data); // 차트 데이터를 스토어에 설정
+                console.log('Fetched data:', data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    };
+
     return (
         <div className="w-full">
             <GoogleMap
@@ -51,7 +69,7 @@ const MapComponent = () => {
                     <Marker
                         key={index}
                         position={{ lat: marker.latitude, lng: marker.longitude }}
-                        onClick={() => alert(`Marker clicked: ${marker.TRDAR_CD_NM}`)}
+                        onClick={() => handleMarkerClick(marker.TRDAR_CD)}
                     />
                 ))}
             </GoogleMap>
