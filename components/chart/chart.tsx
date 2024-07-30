@@ -60,7 +60,7 @@ export function Chart() {
     }, [chartData]);
 
     if (isLoading) {
-        return <p>Loading chart data...</p>;
+        return <p className="h-64 w-full">Loading chart data...</p>;
     }
 
     return (
@@ -85,7 +85,7 @@ export function Chart() {
                     <Bar dataKey="AGE_60_ABOVE_female" fill={femaleColor} />
                 </BarChart>
             ) : (
-                <p>No data available</p>
+                <p className="h-64 w-full">No data available</p>
             )}
         </ChartContainer>
     );
